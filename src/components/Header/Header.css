@@ -11,7 +11,7 @@
    width: 40px;
    height: 43px;
    padding: 9px;
-   background-image: url('../../images/burger.svg');
+   background-image: url("../../images/burger.svg");
    background-position: center;
    background-color: transparent;
    border: none;
@@ -46,19 +46,49 @@
    align-items: center;
 }
 
+@media screen and (min-width: 768px) {
+   .header {
+      margin: 0px 30px;
+   }
+
+   .header__links {
+      font-size: 12px;
+   }
+
+   .header__signin {
+      width: 76px;
+      height: 32px;
+      margin-left: 30px;
+   }
+}
+
+.header__signin:hover {
+   opacity: 0.5;
+   transition: 0.5s;
+}
+
+.header__signup:hover {
+   opacity: 0.5;
+   transition: 0.5s;
+}
+
 @media screen and (min-width: 1280px) {
    .header {
       display: flex;
       justify-content: flex-start;
       max-width: 1140px;
-      margin: 0 auto;
+      margin: 0 70px;
+   }
+
+   .header__signup {
+      margin-left: auto;
    }
 
    .header__links {
       width: 100%;
       display: flex;
       align-items: center;
-      margin-left: 44px;
+   
    }
 
    .header__link {
@@ -80,7 +110,7 @@
    .header__icon-profile {
       width: 26px;
       height: 30px;
-      background-image: url('../../images/icon-profile.svg');
+      background-image: url("../../images/icon-profile.svg");
       background-repeat: no-repeat;
       background-position: center;
       margin-left: 14px;
@@ -88,5 +118,3 @@
       border-radius: 4px;
    }
 }
-
-

@@ -24,12 +24,13 @@
 
 .techs__list {
    margin: 50px auto 70px;
-   padding: 0px 70px;
+   padding: 0;
    list-style-type: none;
    display: grid;
    grid-template-columns: 1fr 1fr;
    grid-gap: 10px;
    align-items: center;
+   justify-content: center;
 }
 
 .techs__skills {

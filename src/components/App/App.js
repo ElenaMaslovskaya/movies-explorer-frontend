@@ -5,8 +5,12 @@ import { Switch } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Film from '../../images/film.png';
-
-export default function App() {
+import SavedMovies from '../SavedMovies/SavedMovies';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
 const moviesCard = [
   {
@@ -24,7 +28,21 @@ const moviesCard = [
     isSaved: false,
   },
   {
-    id: 1,
+    id: 3,
+    image: Film,
+    nameRU: '33 слова о дизайне',
+    duration: 40,
+    isSaved: true,
+  },
+  {
+    id: 4,
+    image: Film,
+    nameRU: '33 слова о дизайне',
+    duration: 40,
+    isSaved: false,
+  },
+  {
+    id: 5,
     image: Film,
     nameRU: '33 слова о дизайне',
     duration: 40,
@@ -32,18 +50,48 @@ const moviesCard = [
   },
 ];
 
+export default function App() {
   return (
     <div className='app'>
+
+      <Route exact path={['/', '/movies', '/saved-movies', '/profile']}>
+        <Header />
+      </Route>
+
       <Switch>
         <Route exact path='/'>
           <Main />
         </Route>
+
+        <Route path="/signup">
+          <Register />
+        </Route>
+
         <Route path='/movies'>
           <Movies
             moviesCard={moviesCard}
           />
         </Route>
+
+        <Route path='/signin'>
+          <Login />
+        </Route>
+
+        <Route path='/profile'>
+          <Profile />
+        </Route>
+
+        <Route path="/saved-movies">
+          <SavedMovies
+            moviesCard={moviesCard}
+          />
+        </Route>
       </Switch>
+
+      <Route exact path={['/', '/movies', '/saved-movies']}>
+        <Footer />
+      </Route>
+
     </div>
   )
 }

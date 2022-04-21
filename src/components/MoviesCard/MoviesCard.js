@@ -27,7 +27,7 @@ export default function MoviesCard({ moviesCard }) {
             <button className={
                `${!moviesCard.isSaved 
                ? 'movies-card__save-button' 
-               : 'movies-card__save-button_activ'}
+               : 'movies-card__save-button_active'}
                ${isSavedMovies 
                ? ' movies-card__delete-button'
                : ''}`}>

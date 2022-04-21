@@ -1,7 +1,11 @@
 .app {
+  margin: 0;
+  padding: 0;
   min-width: 320px;
   display: flex;
+  flex-direction: column;
   background: #202020;
   color: #FFFFFF;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }

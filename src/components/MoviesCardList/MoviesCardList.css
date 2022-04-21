@@ -1,4 +1,36 @@
+.movies-cardlist {
+   display: flex;
+   flex-direction: column;
+}
+
 .movies-cardlist__items {
+   display: flex;
+   flex-direction: column;
    padding: 0;
-   margin: 40px auto 0px;
+   margin: 40px auto 20px;
+   text-align: center;
+}
+
+.movies-cardlist__button {
+   width: 240px;
+   height: 36px;
+   margin: 50px auto 80px;
+   background: #2f2f2f;
+   border-radius: 6px;
+   border: none;
+   color: #ffffff;
+   font-size: 12px;
+   font-weight: 500;
+   line-height: 15px;
+}
+
+.movies-cardlist__button_none {
+   display: none;
+}
+
+.movies-cardlist__button:hover {
+   cursor: pointer;
+   opacity: 0.5;
+   transition: 0.5s;
+   box-shadow: 0 0 1em #ffffff;
 }

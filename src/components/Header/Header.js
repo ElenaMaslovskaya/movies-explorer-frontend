@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
-import MenuBurger from '../MenuBurger/MenuBurger';
+import  Navigation from '../Navigation/Navigation';
 import './Header.css';
 
 export default function Header() {
@@ -47,7 +47,7 @@ export default function Header() {
             )}
 
             {isLoggedIn && !isDesktop && (
-               <MenuBurger
+               <Navigation
                   isOpen={isMenuBurgerOpened}
                   onClose={handleMenuBurgerClick}
                />

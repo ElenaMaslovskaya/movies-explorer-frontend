@@ -8,22 +8,26 @@ export default function MoviesCardList(props) {
    const [listButton, setListButton] = React.useState(false);
 
    React.useEffect(() => {
-      if (location.pathname === 'saved/movies') {
+      if (location.pathname === '/saved-movies') {
          setListButton(true);
       }
    }, [location.pathname])
 
    return (
       <section className='movies-cardlist'>
-            <ul className='movies-cardlist__items'>
-               {props.moviesCard.map((card) => (
-                  <MoviesCard 
-                     key={card.id}
-                     moviesCard={card}
-                  />
-               ))}
-            </ul>
-            <button className={`${listButton ? 'movies-cardlist__button_none' : 'movies-cardlist__button'}`}>Ещё</button>
+         <ul className='movies-cardlist__items'>
+            {props.moviesCard.map((card) => (
+               <MoviesCard
+                  key={card.id}
+                  moviesCard={card}
+               />
+            ))}
+         </ul>
+         <button className={
+            `${listButton
+               ? 'movies-cardlist__button_none'
+               : 'movies-cardlist__button'}`
+         }>Ещё</button>
       </section>
    )
 }

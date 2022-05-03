@@ -1,5 +1,6 @@
 .about-project {
    padding: 0px 18px;
+   margin: 0;
 }
 
 .about-project__card {
@@ -60,7 +61,7 @@
    color: #a0a0a0;
 }
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 768px) {
    .about-project {
       padding: 0 50px;
    }
@@ -84,10 +85,14 @@
 
    .about-project__timeframe {
       grid-template-columns: 140px 1fr;
-      margin-bottom: 100px;
+      margin-bottom: 94px;
       font-size: 14px;
       line-height: 17px;
       letter-spacing: 0em;
+   }
+
+   .about-project__timeframe_line {
+      grid-template-rows: 38px;
    }
 }
 
@@ -113,6 +118,10 @@
 
    .about-project__timeframe {
       grid-template-columns: 228px 1fr;
-      margin-bottom: 114px;
+      margin-bottom: 104px;
+   }
+
+   .about-project__timeframe_line {
+      grid-template-rows: 37px;
    }
 }

@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg';
 export default function HeaderLogo() {
    return (
       <div>
-         <Link to='/'>
+         <Link to='/' className='logo'>
             <img className='logo__button' src={logo} alt='логотип' />
          </Link>
       </div>

@@ -16,7 +16,7 @@ export default function Techs() {
             <li className='techs__skills'>React</li>
             <li className='techs__skills'>Git</li>
             <li className='techs__skills'>Express.js</li>
-            <li className='techs__skills'>MongoDB</li>
+            <li className='techs__skills'>mongoDB</li>
          </ul>
       </section>
    )

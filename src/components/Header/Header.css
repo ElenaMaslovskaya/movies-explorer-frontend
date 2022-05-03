@@ -17,6 +17,12 @@
    border: none;
 }
 
+.header__menu-burger:hover {
+   cursor: pointer;
+   opacity: 0.5;
+   transition: 0.5s;
+}
+
 .header__links {
    display: flex;
    font-size: 10px;

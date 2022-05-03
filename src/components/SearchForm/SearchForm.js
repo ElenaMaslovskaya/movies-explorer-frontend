@@ -1,6 +1,8 @@
 import React from 'react';
 import './SearchForm.css';
 import FindIcon from '../../images/find.svg';
+import DividingLine from '../../images/dividing-line.svg';
+import Search from '../../images/search.svg'
 
 export default function SearchForm() {
    const [isFilter, setIsFilter] = React.useState(false);
@@ -19,10 +21,12 @@ export default function SearchForm() {
          <div className='search-form__container'>
 
             <form className='search-form__form'>
-                  <input className='search-form__input' type='text' placeholder='Фильм' autoComplete='off' minLength='2' maxLength='100' required />
-                  <button className='search-form__button' type='submit'>
-                     <img src={FindIcon} alt='поиск' />
-                  </button>
+               <img className='search-form__input-icon' src={Search} alt='Поиск' />
+               <input className='search-form__input' type='text' placeholder='Фильм' autoComplete='off' minLength='2' maxLength='100' required />
+               <button className='search-form__button' type='submit'>
+                  <img className='search-form__icon' src={FindIcon} alt='поиск' />
+               </button>
+               <img className='search-form__line' src={DividingLine} alt='разделитель' />
             </form>
 
             <div className='search-form__short'>

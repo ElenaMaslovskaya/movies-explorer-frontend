@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
 export default function MoviesCard({ moviesCard }) {
-   const location = useLocation;
+   const location = useLocation();
    const [isSavedMovies, setIsSavedMovies] = React.useState(false);
 
    React.useEffect(() => {

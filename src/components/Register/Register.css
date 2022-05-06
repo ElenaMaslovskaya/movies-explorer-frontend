@@ -48,6 +48,11 @@
    line-height: 17px;
 }
 
+.form-register__input:focus {
+   outline: none;
+   border-bottom: 1px solid rgb(227, 221, 221);
+}
+
 .form-register__button {
    margin: 215px auto 4px;
    width: 260px;

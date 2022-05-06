@@ -82,7 +82,7 @@
    .header {
       display: flex;
       justify-content: flex-start;
-      max-width: 1140px;
+      min-width: 1140px;
       margin: 0 70px;
    }
 
@@ -94,7 +94,6 @@
       width: 100%;
       display: flex;
       align-items: center;
-   
    }
 
    .header__link {
@@ -109,12 +108,28 @@
       margin-left: auto;
    }
 
+   .header__link_profile:hover {
+      opacity: 0.5;
+      transition: 0.5s;
+   }
+
    .header__link_saved-movies {
       margin: 0 16px;
    }
 
+   .header__link_saved-movies:hover {
+      opacity: 0.5;
+      transition: 0.5s;
+   }
+
    .header__link_movies {
+      margin: 0;
       margin-left: 40px;
+   }
+
+   .header__link_movies:hover {
+      opacity: 0.5;
+      transition: 0.5s;
    }
 
    .header__icon-profile {
@@ -127,4 +142,10 @@
       background-color: #313131;
       border-radius: 4px;
    }
+
+   .header__icon-profile:hover {
+      opacity: 0.5;
+      transition: 0.5s;
+   }
+
 }

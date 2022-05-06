@@ -49,6 +49,11 @@
    line-height: 17px;
 }
 
+.form-login__input:focus {
+   outline: none;
+   border-bottom: 1px solid rgb(227, 221, 221);
+}
+
 .form-login__button {
    box-sizing: border-box;
    margin: 286px auto 3px;

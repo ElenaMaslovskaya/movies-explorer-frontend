@@ -60,13 +60,18 @@
    margin: 0;
 }
 
+.navigation__movies:hover {
+   opacity: 0.5;
+   transition: 0.5s;
+}
+
 .active {
-   margin: 0 auto 17px;
    text-decoration: underline;
 }
 
 .navigation__profile {
-   margin: 435px auto 48px;
+   margin: 435px 0 0px;
+   text-align: center;
 }
 
 .navigation__profile-links {

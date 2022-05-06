@@ -109,8 +109,12 @@
       margin-left: auto;
    }
 
+   .header__link_saved-movies {
+      margin: 0 16px;
+   }
+
    .header__link_movies {
-      margin-right: 16px;
+      margin-left: 40px;
    }
 
    .header__icon-profile {

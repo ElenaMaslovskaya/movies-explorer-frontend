@@ -11,6 +11,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import NotFound from '../NotFound/NotFound';
 
 const moviesCard = [
   {
@@ -85,6 +86,10 @@ export default function App() {
           <SavedMovies
             moviesCard={moviesCard}
           />
+        </Route>
+
+        <Route path='*'>
+          <NotFound />
         </Route>
       </Switch>
 

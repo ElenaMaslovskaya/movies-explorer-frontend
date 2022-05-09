@@ -22,6 +22,8 @@ export default function Profile() {
                      name='profile-name'
                      placeholder='Елена'
                      autoComplete='off'
+                     minLength='2'
+                     maxLength='30'
                      required
                   />
                </div>

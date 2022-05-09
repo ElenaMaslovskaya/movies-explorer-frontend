@@ -24,6 +24,8 @@ export default function Register() {
                   name='user-name'
                   placeholder='Name'
                   autoComplete='off'
+                  minLength='2'
+                  maxLength='30'
                   required
                />
                <span className='form-register__error'></span>
@@ -55,6 +57,7 @@ export default function Register() {
                   name='register-password'
                   placeholder='Password'
                   autoComplete='off'
+                  minLength='8'
                   required
                />
                <span className='form-register__error'></span>

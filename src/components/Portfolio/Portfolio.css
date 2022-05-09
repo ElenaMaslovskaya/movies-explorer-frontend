@@ -45,6 +45,11 @@
    transition: 0.4s;
 }
 
+.portfolio__arrow-icon {
+   width: 12px;
+   height: 18px;
+}
+
 @media screen and (min-width: 768px) {
    .portfolio {
       padding: 0px 50px;
@@ -61,6 +66,11 @@
       font-size: 28px;
       line-height: 50px;
       letter-spacing: -0.04em;
+   }
+
+   .portfolio__arrow-icon {
+      width: 28px;
+      height: 18px;
    }
 }
 

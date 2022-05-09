@@ -1,4 +1,5 @@
 import './Portfolio.css';
+import arrow from '../../images/arrow.svg';
 
 export default function Portfolio() {
    return (
@@ -8,19 +9,19 @@ export default function Portfolio() {
             <li className='portfolio__site'>
                <a className='portfolio__link' target='_blank' rel='noreferrer' href='https://github.com/ElenaMaslovskaya/how-to-learn'>
                   Статичный сайт
-                  <span>&#129125;</span>
+                  <img className='portfolio__arrow-icon' alt='arrow' src={arrow} />
                </a>
             </li>
             <li className='portfolio__site'>
                <a className='portfolio__link' target='_blank' rel='noreferrer' href='https://github.com/ElenaMaslovskaya/russian-travel'>
                   Адаптивный сайт
-                  <span>&#129125;</span>
+                  <img className='portfolio__arrow-icon' alt='arrow' src={arrow} />
                </a>
             </li>
             <li className='portfolio__site'>
                <a className='portfolio__link' target='_blank' rel='noreferrer' href='https://github.com/ElenaMaslovskaya/react-mesto-api-full'>
                   Одностраничное приложение
-                  <span>&#129125;</span>
+                  <img className='portfolio__arrow-icon' alt='arrow' src={arrow} />
                </a>
             </li>
          </ul>

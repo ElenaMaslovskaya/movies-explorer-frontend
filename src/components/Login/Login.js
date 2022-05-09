@@ -39,6 +39,7 @@ export default function Login() {
                   name='login-password'
                   placeholder='Password'
                   autoComplete='off'
+                  minLength='8'
                   required
                />
                <span className='form-login__error'></span>

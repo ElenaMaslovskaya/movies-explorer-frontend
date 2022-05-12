@@ -1,0 +1,127 @@
+.about-project {
+   padding: 0px 18px;
+   margin: 0;
+}
+
+.about-project__card {
+   margin: 0;
+}
+
+.about-project__info {
+   margin: 0px auto;
+   display: grid;
+   grid-template-columns: 1fr;
+}
+
+.about-project__title {
+   margin: 0;
+   margin-bottom: 16px;
+   font-size: 18px;
+   font-weight: 400;
+   line-height: 22px;
+   letter-spacing: -0.04em;
+}
+
+.about-project__discription {
+   margin: 0;
+   margin-bottom: 56px;
+   padding: 0;
+   font-size: 11px;
+   font-weight: 400;
+   line-height: 16px;
+}
+
+.about-project__timeframe {
+   margin: 4px 0px 70px;
+   display: grid;
+   grid-template-columns: 100px 1fr;
+   font-size: 11px;
+   font-weight: 400;
+   line-height: 13px;
+   text-align: center;
+   align-items: center;
+}
+
+.about-project__timeframe_line {
+   display: grid;
+   grid-template-rows: 35px;
+   align-items: center;
+   margin: 0;
+   background-color: #303030;
+}
+
+.about-project__timeframe_line:first-child {
+   background-color: #3ddc84;
+   color: #000000;
+}
+
+.about-project__timeframe_text {
+   margin: 0;
+   margin-top: 10px;
+   color: #a0a0a0;
+}
+
+@media screen and (min-width: 768px) {
+   .about-project {
+      padding: 0 50px;
+   }
+
+   .about-project__info {
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 30px;
+   }
+
+   .about-project__title {
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 22px;
+   }
+
+   .about-project__discription {
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 89px;
+   }
+
+   .about-project__timeframe {
+      grid-template-columns: 140px 1fr;
+      margin-bottom: 94px;
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: 0em;
+   }
+
+   .about-project__timeframe_line {
+      grid-template-rows: 38px;
+   }
+}
+
+@media screen and (min-width: 1280px) {
+   .about-project {
+      padding: 0 70px;
+   }
+
+   .about-project__title {
+      margin-bottom: 26px;
+   }
+
+   .about-project__discription {
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 108px;
+   }
+
+   .about-project__info {
+      grid-template-columns: 550px 550px;
+      grid-column-gap: 40px;
+   }
+
+   .about-project__timeframe {
+      grid-template-columns: 228px 1fr;
+      margin-bottom: 104px;
+   }
+
+   .about-project__timeframe_line {
+      grid-template-rows: 37px;
+   }
+}

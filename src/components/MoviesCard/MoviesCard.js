@@ -1,38 +1,69 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
-export default function MoviesCard({ moviesCard }) {
-   const location = useLocation();
-   const [isSavedMovies, setIsSavedMovies] = React.useState(false);
+export default function MoviesCard({
+   moviesCard,
+   location,
+   handleDeleteMovie,
+   handleSaveMovie,
+   saved
+}) {
 
-   React.useEffect(() => {
+   function saveMovie() {
+      handleSaveMovie(moviesCard);
+   }
+
+   function deleteMovie() {
+      let checkLocation = false;
       if (location.pathname === '/saved-movies') {
-         setIsSavedMovies(true);
+         checkLocation = true;
       }
-   }, [location.pathname]);
+      handleDeleteMovie(moviesCard, checkLocation);
+   }
+
+   function onTrailerLink() {
+      window.open(moviesCard.trailerLink, '_blank');
+   }
 
    return (
-      <div className='movies-card'>
-         <img className='movies-card__image' src={moviesCard.image} alt='Фильм' />
+      <li className='movies-card'>
+         <img
+            className='movies-card__image'
+            src={moviesCard.image.url
+               ? `https://api.nomoreparties.co/${moviesCard.image.url}`
+               : moviesCard.image}
+            alt='Фильм'
+            onClick={onTrailerLink}
+         />
          <div className='movies-card__info'>
             <div>
-            <h3 className='movies-card__title'>{moviesCard.nameRU}</h3>
-            <p className='movies-card__duration'>
-               {moviesCard.duration}
-               {''}
-               минут
-            </p>
+               <h3 className='movies-card__title'>
+                  {moviesCard.nameRU}
+               </h3>
+               <p className='movies-card__duration'>
+                  {moviesCard.duration}
+                  {''}
+                  минут
+               </p>
             </div>
-            <button className={
-               `${!moviesCard.isSaved 
-               ? 'movies-card__save-button' 
-               : 'movies-card__save-button_active'}
-               ${isSavedMovies 
-               ? ' movies-card__delete-button'
-               : ''}`}>
-            </button>
+            {location.pathname === '/saved-movies'
+               && (
+                  <button
+                     className='movies-card__delete-button'
+                     onClick={deleteMovie}
+                  />
+               )}
+            {location.pathname === '/movies'
+               && (
+                  <button
+                     className={saved
+                        ? 'movies-card__save-button_active'
+                        : 'movies-card__save-button'
+                     }
+                     onClick={saveMovie}
+                  />
+               )}
          </div>
-      </div>
+      </li>
    )
 }

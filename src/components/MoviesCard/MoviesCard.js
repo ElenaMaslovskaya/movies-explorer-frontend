@@ -2,67 +2,63 @@ import React from 'react';
 import './MoviesCard.css';
 
 export default function MoviesCard({
-   moviesCard,
-   location,
-   handleDeleteMovie,
-   handleSaveMovie,
-   saved
-}) {
+   card,
+   onLike,
+   onDelete,
+   liked,
+   savedPage }) {
+   function handleLikeClick() {
+      onLike(card);
+   };
 
-   function saveMovie() {
-      handleSaveMovie(moviesCard);
+   function getTime(mins) {
+      const hours = Math.trunc(mins / 60);
+      const minutes = mins % 60;
+      return `${hours}ч ${minutes}м`;
    }
 
-   function deleteMovie() {
-      let checkLocation = false;
-      if (location.pathname === '/saved-movies') {
-         checkLocation = true;
-      }
-      handleDeleteMovie(moviesCard, checkLocation);
-   }
-
-   function onTrailerLink() {
-      window.open(moviesCard.trailerLink, '_blank');
-   }
+   function handleDeleteClick() {
+      onDelete(card);
+   };
 
    return (
       <li className='movies-card'>
-         <img
-            className='movies-card__image'
-            src={moviesCard.image.url
-               ? `https://api.nomoreparties.co/${moviesCard.image.url}`
-               : moviesCard.image}
-            alt='Фильм'
-            onClick={onTrailerLink}
-         />
+         <a
+            className='movies-card__link'
+            href={card.trailer || card.trailerLink}
+            target='_blank'
+            rel='noreferrer'>
+            <img
+               className='movies-card__image'
+               src={card.image}
+               alt='Фильм'
+            />
+         </a>
          <div className='movies-card__info'>
             <div>
                <h3 className='movies-card__title'>
-                  {moviesCard.nameRU}
+                  {card.nameRU}
                </h3>
                <p className='movies-card__duration'>
-                  {moviesCard.duration}
-                  {''}
-                  минут
+                  {getTime(card.duration)}
                </p>
             </div>
-            {location.pathname === '/saved-movies'
-               && (
-                  <button
-                     className='movies-card__delete-button'
-                     onClick={deleteMovie}
-                  />
-               )}
-            {location.pathname === '/movies'
-               && (
-                  <button
-                     className={saved
-                        ? 'movies-card__save-button_active'
-                        : 'movies-card__save-button'
-                     }
-                     onClick={saveMovie}
-                  />
-               )}
+            <button
+               type='button'
+               className={`${savedPage
+                  ? 'movies-card__delete-button'
+                  : ''}`}
+               onClick={handleDeleteClick}
+            />
+
+            <button
+               type='button'
+               className={`${liked && !savedPage
+                  ? 'movies-card__save-button_active'
+                  : 'movies-card__save-button'}
+                     `}
+               onClick={handleLikeClick}
+            />
          </div>
       </li>
    )

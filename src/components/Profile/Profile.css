@@ -71,6 +71,12 @@
    transition: 0.5s;
 }
 
+.form-profile__button_disabled {
+   opacity: 0.3;
+   color: #000000;
+   pointer-events: none;
+}
+
 .form-profile__link {
    margin: 0 auto;
    margin-bottom: 30px;

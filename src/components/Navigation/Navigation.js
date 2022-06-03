@@ -2,13 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
-export default function Navigation(props) {
+export default function Navigation({
+   isOpen,
+   onClose
+}) {
    return (
-      <section className={`navigation ${props.isOpen ? 'navigation_opened' : ''}`}>
+      <section className={`navigation 
+      ${isOpen
+            ? 'navigation_opened'
+            : ''}`}>
          <div className='navigation__container'>
             <button
                className="navigation__close"
-               onClick={props.onClose}
+               onClick={onClose}
             />
             <div className="navigation__movies-list">
                <NavLink exact to="/" className="navigation__movies" >

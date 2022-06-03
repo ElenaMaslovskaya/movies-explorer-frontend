@@ -1,18 +1,64 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-export default function Profile() {
+export default function Profile({ handleLogOut, handleUpdateUser, isErrorState }) {
+
+   const [isInputActive, setIsInputActive] = useState(false);
+   const currentUser = useContext(CurrentUserContext);
+   const { values,
+      errors,
+      isValid,
+      handleChange,
+      setValues,
+      setIsValid } = useFormWithValidation();
+
+   // забираем значения юзера
+   useEffect(() => {
+      if (currentUser) {
+         setValues({
+            name: currentUser.name,
+            email: currentUser.email,
+         });
+      }
+   }, [setValues, currentUser]);
+
+   useEffect(() => {
+      if (currentUser.name === values.name && currentUser.email === values.email) {
+         setIsValid(false);
+      }
+   }, [setIsValid, values, currentUser]);
+
+   useEffect(() => {
+      if (isErrorState === false) {
+         setIsInputActive(false);
+      }
+   }, [setIsInputActive, isErrorState]);
+
+   function handleSubmit(e) {
+      e.preventDefault();
+      handleUpdateUser(values.name, values.email);
+      setIsInputActive(false);
+   };
+
+   function handleRedactClick() {
+      setIsInputActive(true);
+   };
+   
    return (
       <section className='profile'>
-         <form className='form-profile' name='form-profile'>
+         <form
+            className='form-profile'
+            name='form-profile'>
             <div className='form-profile__container'>
                <h2 className='form-profile__title'>
-                  Привет, Елена!
+                  Привет, {currentUser.name}!
                </h2>
 
                <div className='form-profile__input-box'>
-                  <span   className='form-profile__span'>
+                  <span className='form-profile__span'>
                      Имя
                   </span>
                   <input
@@ -20,12 +66,17 @@ export default function Profile() {
                      type='text'
                      id='profile-name'
                      name='profile-name'
-                     placeholder='Елена'
-                     autoComplete='off'
                      minLength='2'
                      maxLength='30'
+                     onChange={handleChange}
                      required
+                     pattern='^[A-Za-zА-Яа-яЁё /s -]+$'
+                     defaultValue={values.name || ''}
+                     disabled={!isInputActive}
                   />
+                  <span id="name-error" className='profile__error'>
+                     {errors.name || ''}
+                  </span>
                </div>
 
                <div className='form-profile__input-box border-none'>
@@ -37,17 +88,31 @@ export default function Profile() {
                      type='email'
                      id='profile-email'
                      name='profile-email'
-                     placeholder='elena.maslovski@yandex.ru'
-                     autoComplete='off'
                      required
+                     defaultValue={values.email || ''}
+                     onChange={handleChange}
+                     disabled={!isInputActive}
                   />
-
+                  <span id='email-error' className='profile__error'>
+                     {errors.email || ''}
+                  </span>
                </div>
-               <button className='form-profile__button' type='submit'>
+               <button
+                  className={`form-profile__button 
+                  ${!isValid
+                        ? 'form-profile__button_disabled'
+                        : ''}`}
+                  type='submit'
+                  onClick={handleRedactClick}>
                   Редактировать
                </button>
                <div className='form-profile__link'>
-                  <Link to='/signin' className='form-profile__link_exit'>Выйти из аккаунта</Link>
+                  <Link
+                     to='/signin'
+                     className='form-profile__link_exit'
+                     onClick={handleLogOut}>
+                     Выйти из аккаунта
+                  </Link>
                </div>
             </div>
          </form>

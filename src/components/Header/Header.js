@@ -57,13 +57,13 @@ export default function Header() {
                !isLoggedIn && (
                   <>
                      <Link
-                        to="signup"
+                        to="/signup"
                         className="header__signup"
                      >
                         Регистрация
                      </Link>
                      <Link
-                        to="signin"
+                        to="/signin"
                         className="header__signin"
                      >
                         Войти

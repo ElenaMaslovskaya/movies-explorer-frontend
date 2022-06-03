@@ -76,6 +76,12 @@
    transition: 0.5s;
 }
 
+.form-login__button_disabled {
+   opacity: 0.3;
+   color: #000000;
+   pointer-events: none;
+}
+
 .form-login__link {
    margin: 0 auto;
    margin-bottom: 30px;

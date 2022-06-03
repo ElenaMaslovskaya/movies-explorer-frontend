@@ -1,0 +1,9 @@
+.saved-movies__message {
+   font-size: 40px;
+   font-weight: bold;
+}
+
+.saved-movies {
+   display: flex;
+   flex-direction: column;
+}

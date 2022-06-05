@@ -1,7 +1,7 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import React, { useEffect, useState } from 'react';
-import { useWindowWidth } from '../../hooks/useWindowWidth';
+import useWindowWidth from '../../hooks/useWindowWidth';
 import Preloader from '../Preloader/Preloader';
 
 export default function MoviesCardList({
@@ -84,36 +84,34 @@ export default function MoviesCardList({
          {isLoading ? (
             <Preloader />
          ) : (
-            <ul className='movies-cardlist__items'>
-               (list.length===0 || isError) ? (
-               <p className={`movies-list__message 
-               ${isError && 'movies-list__message_type_err'}`}>
+            (list.length === 0 || isError) ? (
+               <p className={`movies-cardlist__message 
+               ${isError && 'movies-cardlist__message_type_err'}`}>
                   {isError
                      ? `Ошибка сервера`
                      : 'Ничего не найдено'}
                </p>
-               ) : (
-               <>
-                  <div className={SavedMoviesPage
-                     ? `movies-list__box movies-list__box_saved-page`
-                     : `movies-list__box`}>
-                     {SavedMoviesPage
-                        ? getSavedMoviesPage()
-                        : getInitialMoviesPage()}
-                  </div>
-                  <button
-                     className={(SavedMoviesPage || list.length === 0 || showList.length === list.length)
-                        ? `movies-cardlist__button movies-cardlist__button_none`
-                        : `movies-cardlist__button`}
-                     type='button'
-                     onClick={handleClickMoreMovies}
-                  >
-                     Ещё
-                  </button>
-               </>
-               )
-            </ul>
-         )}
+            ) : (
+                  <ul className='movies-cardlist__items'>
+                     <div className={SavedMoviesPage
+                        ? `movies-list__box movies-list__box_saved-page`
+                        : `movies-list__box`}>
+                        {SavedMoviesPage
+                           ? getSavedMoviesPage()
+                           : getInitialMoviesPage()}
+                     </div>
+                     <button
+                        className={(SavedMoviesPage || list.length === 0 || showList.length === list.length)
+                           ? `movies-cardlist__button movies-cardlist__button_none`
+                           : `movies-cardlist__button`}
+                        type='button'
+                        onClick={handleClickMoreMovies}
+                     >
+                        Ещё
+                     </button>
+                  </ul>
+                  )
+            )}
       </section>
    );
 }

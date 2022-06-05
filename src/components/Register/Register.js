@@ -47,7 +47,7 @@ export default function Register(props) {
                   className='form-register__input'
                   type='text'
                   id='user-name'
-                  name='user-name'
+                  name='name'
                   placeholder='Name'
                   minLength='2'
                   maxLength='30'
@@ -68,7 +68,7 @@ export default function Register(props) {
                   className='form-register__input'
                   type='email'
                   id='register-email'
-                  name='register-email'
+                  name='email'
                   placeholder='Email'
                   required
                   onChange={handleChange}
@@ -87,7 +87,7 @@ export default function Register(props) {
                   className='form-register__input'
                   type='password'
                   id='register-password'
-                  name='register-password'
+                  name='password'
                   placeholder='Password'
                   minLength='8'
                   required

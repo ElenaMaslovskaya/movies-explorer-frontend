@@ -11,7 +11,7 @@ export default function SearchForm({
    shortFilms,
    onCheckbox }) {
 
-   const { values, errors, isValid, setValues, handleChange, setIsValid } = useFormWithValidation();
+   const { values, isValid, setValues, handleChange, setIsValid } = useFormWithValidation();
 
    useEffect(() => {
       if (!savedMoviesPage) {
@@ -54,13 +54,6 @@ export default function SearchForm({
                   onChange={handleChange}
                   required
                />
-               <span 
-               id='search-error' 
-               className='search-form__error'>
-                  {errors.keyword 
-                  ? 'Нужно ввести ключевое слово' 
-                  : ''}
-               </span>
                <button
                   className='search-form__button'
                   type='button'
@@ -79,24 +72,33 @@ export default function SearchForm({
             </form>
 
             <div className='search-form__short'>
-               <div
-                  onChange={onCheckbox}
-                  className={`search-form__short_button 
-                  ${shortFilms
-                     ? '_filter1'
-                     : ''}`}>
-                  <div
-                     className={`search-form__short_disk 
-                     ${shortFilms
-                        ? '_filter2'
-                        : ''}`}>
-                  </div>
-               </div>
+               <label className={`search-form__switch
+            ${shortFilms === 'on' 
+            ? 'search-form__switch_active' 
+            : null}`}>
+               <input className='search-form__checkbox search-form__checkbox_off'
+                     type="radio"
+                     name='shortFilms'
+                     value='off'
+                     checked={shortFilms === 'off' 
+                     ? true 
+                     : false}
+                     onChange={onCheckbox} />
+                  <input className='search-form__checkbox search-form__checkbox_on'
+                     type="radio"
+                     name='shortFilms'
+                     value='on'
+                     checked={shortFilms === 'on' 
+                     ? true 
+                     : false}
+                     onChange={onCheckbox} />
+                  <span className='search-form__slider'></span>
+               </label>
                <p className='search-form__short-title'>
                   Короткометражки
                </p>
             </div>
          </div>
-      </section>
+      </section >
    );
 }

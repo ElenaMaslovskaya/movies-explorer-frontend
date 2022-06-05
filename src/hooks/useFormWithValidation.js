@@ -17,5 +17,7 @@ export default function useFormWithValidation() {
       setIsValid(input.closest('form').checkValidity());
    };
 
-   return { values, errors, isValid, handleChange, setValues, setIsValid, setErrors };
+   return {
+      values, errors, isValid, setValues, setIsValid, setErrors, handleChange
+   };
 };

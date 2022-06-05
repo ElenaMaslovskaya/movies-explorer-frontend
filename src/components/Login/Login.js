@@ -48,7 +48,7 @@ export default function Login(props) {
                   className='form-login__input'
                   type='email'
                   id='login-email'
-                  name='login-email'
+                  name='email'
                   placeholder='Email'
                   required
                   onChange={handleChange}
@@ -66,7 +66,7 @@ export default function Login(props) {
                   className='form-login__input'
                   type='password'
                   id='login-password'
-                  name='login-password'
+                  name='password'
                   placeholder='Password'
                   minLength='8'
                   required

@@ -2,7 +2,6 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 import React, { useEffect, useState } from 'react';
-import Preloader from '../Preloader/Preloader';
 import { moviesApi } from '../../utils/MoviesApi'
 
 export default function Movies({
@@ -113,18 +112,15 @@ export default function Movies({
             onCheckbox={handleShortFilms}
             shortFilms={shortFilms}
          />
-         {
-            isLoading ? <Preloader /> : (
-               <MoviesCardList
-               isLoading={isMoviesLoading}
-               list={filteredMovies}
-               SavedMoviesPage={SavedMoviesPage}
-               isError={isError}
-               SavedMoviesList={SavedMoviesList}
-               onLikeClick={onLikeClick}
-               onDeleteClick={onDeleteClick}
-               />
-            )}
+         <MoviesCardList
+            isLoading={isMoviesLoading}
+            list={filteredMovies}
+            SavedMoviesPage={SavedMoviesPage}
+            isError={isError}
+            SavedMoviesList={SavedMoviesList}
+            onLikeClick={onLikeClick}
+            onDeleteClick={onDeleteClick}
+         />
       </section>
    )
 }

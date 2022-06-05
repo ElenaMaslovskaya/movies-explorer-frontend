@@ -18,10 +18,7 @@ class MainApi {
             'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
             'Content-Type': this._contentType
          },
-         body: JSON.stringify({
-            name: name,
-            email: email
-         })
+         body: JSON.stringify({ name, email })
       })
          .then(res => this._getCheckResponse(res));
    }
@@ -34,7 +31,7 @@ class MainApi {
             'Content-Type': this._contentType
          }
       })
-      .then(res => this._getCheckResponse(res));
+         .then(res => this._getCheckResponse(res));
    }
 
    saveUserMovie({
@@ -73,10 +70,13 @@ class MainApi {
          .then(res => this._getCheckResponse(res));
    };
 
-   deleteMovie(movieId) {
+   deleteMovie(movieId, token) {
       return fetch(`${this._baseURL}/movies/${movieId}`, {
          method: 'DELETE',
-         headers: this._headers,
+         headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': this._contentType
+         }
       })
          .then(res => this._getCheckResponse(res));
    };

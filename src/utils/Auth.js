@@ -17,7 +17,7 @@ class Auth {
          headers: {
             'Content-Type': this._contentType
          },
-         body: JSON.stringify({name, email, password})
+         body: JSON.stringify({ name, email, password })
       })
          .then(res => this._getCheckResponse(res))
    };
@@ -28,10 +28,7 @@ class Auth {
          headers: {
             'Content-Type': this._contentType
          },
-         body: JSON.stringify({
-            email: email,
-            password: password
-         })
+         body: JSON.stringify({ email, password })
       })
          .then(res => this._getCheckResponse(res));
    };

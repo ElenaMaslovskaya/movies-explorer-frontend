@@ -43,21 +43,12 @@ export default function MoviesCard({
                   {getTime(card.duration)}
                </p>
             </div>
-            <button
-               type='button'
-               className={`${savedPage
-                  ? 'movies-card__delete-button'
-                  : ''}`}
-               onClick={handleDeleteClick}
-            />
 
             <button
+               className={`${savedPage ? 'movies-card__delete-button' : 'movies-card__save-button'} 
+               ${liked && !savedPage ? 'movies-card__save-button_active' : ''}`}
                type='button'
-               className={`${liked && !savedPage
-                  ? 'movies-card__save-button_active'
-                  : 'movies-card__save-button'}
-                     `}
-               onClick={handleLikeClick}
+               onClick={savedPage || liked ? handleDeleteClick : handleLikeClick}
             />
          </div>
       </li>

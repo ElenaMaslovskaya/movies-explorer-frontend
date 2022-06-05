@@ -49,11 +49,11 @@
 .form-profile__input-block {
    display: flex;
    flex-direction: column;
+   width: 85%;
 }
 
 .form-profile__input {
-   display: flex;
-   width: 100%;
+   width: 90%;
    margin: 0;
    background: #202020;
    color: #ffffff;

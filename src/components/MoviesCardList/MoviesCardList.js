@@ -21,7 +21,7 @@ export default function MoviesCardList({
    useEffect(() => {
       if (width >= 768) {
          setCardsShowParams({ shown: 7, hidden: 7 });
-      } else if (width <= 629) {
+      } else {
          setCardsShowParams({ shown: 5, hidden: 5 });
       }
    }, [width]);
@@ -29,6 +29,7 @@ export default function MoviesCardList({
    useEffect(() => {
       if (list.length && !SavedMoviesPage) {
          const res = list.filter((item, index) => index < cardsShowParams.shown);
+         console.log(res);
          setShowList(res);
       }
    }, [list, SavedMoviesPage, cardsShowParams.shown]);
@@ -62,7 +63,6 @@ export default function MoviesCardList({
    };
 
    function getInitialMoviesPage() {
-
       return showList.map((item) => {
          const likedMovieCard = getSavedMovie(SavedMoviesList, item.id);
          const likedMovieId = likedMovieCard
@@ -74,7 +74,9 @@ export default function MoviesCardList({
                card={{ ...item, _id: likedMovieId }}
                onLike={onLikeClick}
                onDelete={onDeleteClick}
-               liked={likedMovieCard ? true : false}
+               liked={likedMovieCard
+                  ? true
+                  : false}
             />)
       })
    };
@@ -88,30 +90,30 @@ export default function MoviesCardList({
                <p className={`movies-cardlist__message 
                ${isError && 'movies-cardlist__message_type_err'}`}>
                   {isError
-                     ? `Ошибка сервера`
+                     ? `Ошибка сервера `
                      : 'Ничего не найдено'}
                </p>
             ) : (
-                  <ul className='movies-cardlist__items'>
-                     <div className={SavedMoviesPage
-                        ? `movies-list__box movies-list__box_saved-page`
-                        : `movies-list__box`}>
-                        {SavedMoviesPage
-                           ? getSavedMoviesPage()
-                           : getInitialMoviesPage()}
-                     </div>
-                     <button
-                        className={(SavedMoviesPage || list.length === 0 || showList.length === list.length)
-                           ? `movies-cardlist__button movies-cardlist__button_none`
-                           : `movies-cardlist__button`}
-                        type='button'
-                        onClick={handleClickMoreMovies}
-                     >
-                        Ещё
-                     </button>
-                  </ul>
-                  )
-            )}
+               <ul className='movies-cardlist__items'>
+                  <div className={SavedMoviesPage
+                     ? `movies-list__box movies-list__box_saved-page`
+                     : `movies-list__box`}>
+                     {SavedMoviesPage
+                        ? getSavedMoviesPage()
+                        : getInitialMoviesPage()}
+                  </div>
+                  <button
+                     className={(SavedMoviesPage || list.length === 0 || showList.length === list.length)
+                        ? `movies-cardlist__button movies-cardlist__button_none`
+                        : `movies-cardlist__button`}
+                     type='button'
+                     onClick={handleClickMoreMovies}
+                  >
+                     Ещё
+                  </button>
+               </ul>
+            )
+         )}
       </section>
    );
 }

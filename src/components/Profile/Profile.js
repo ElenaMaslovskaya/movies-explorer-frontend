@@ -5,12 +5,15 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
 export default function Profile({
-   handleLogOut, handleUpdateUser, isErrorState
+   handleLogOut,
+   handleUpdateUser,
+   isErrorState
 }) {
 
    const [isInputActive, setIsInputActive] = useState(false);
    const currentUser = useContext(CurrentUserContext);
-   const { values,
+   const { 
+      values,
       errors,
       isValid,
       handleChange,
@@ -18,6 +21,7 @@ export default function Profile({
       setIsValid } = useFormWithValidation();
 
    useEffect(() => {
+      console.log(currentUser);
       if (currentUser) {
          setValues({
             name: currentUser.name,
@@ -49,6 +53,7 @@ export default function Profile({
       setIsInputActive(true);
    };
 
+
    return (
       <section className='profile'>
          <form
@@ -68,64 +73,64 @@ export default function Profile({
                      Имя
                   </span>
                   <div className='form-profile__input-block'>
-                  <input
-                     className='form-profile__input'
-                     type='text'
-                     id='name'
-                     name='name'
-                     minLength='2'
-                     maxLength='30'
-                     onChange={handleChange}
-                     required
-                     pattern='^[A-Za-zА-Яа-яЁё /s -]+$'
-                     defaultValue={values.name || ''}
-                  //disabled={!isInputActive}
-                  />
+                     <input
+                        className='form-profile__input'
+                        type='text'
+                        id='name'
+                        name='name'
+                        minLength='2'
+                        maxLength='30'
+                        onChange={handleChange}
+                        required
+                        pattern='^[A-Za-zА-Яа-яЁё /s -]+$'
+                        defaultValue={values.name || ''}
+                     // disabled={!isInputActive}
+                     />
+                     <span id='email-error' className='profile__error'>
+                        {errors.name || ''}
+                     </span>
+                  </div>
                </div>
-               <span id="name-error" className='profile__error'>
-                  {errors.name || ''}
-               </span>
-            </div>
 
-            <div className='form-profile__input-box border-none'>
-               <span className='form-profile__span'>
-                  E-mail
-               </span>
-               <div className='form-profile__input-block'>
-                  <input
-                     className='form-profile__input'
-                     type='email'
-                     id='profile-email'
-                     name='email'
-                     required
-                     defaultValue={values.email || ''}
-                     onChange={handleChange}
-                     disabled={!isInputActive}
-                  />
-                  <span id='email-error' className='profile__error'>
-                     {errors.email || ''}
+               <div className='form-profile__input-box border-none'>
+                  <span className='form-profile__span'>
+                     E-mail
                   </span>
+                  <div className='form-profile__input-block'>
+                     <input
+                        className='form-profile__input'
+                        type='email'
+                        id='profile-email'
+                        name='email'
+                        required
+                        defaultValue={values.email || ''}
+                        onChange={handleChange}
+                     // disabled={!isInputActive}
+                     />
+                     <span id='email-error' className='profile__error'>
+                        {errors.email || ''}
+                     </span>
+                  </div>
+               </div>
+               <button
+                  className={`form-profile__button 
+                  ${!isValid
+                        ? 'form-profile__button_disabled'
+                        : ''}`}
+                  type='submit'
+                  onClick={handleRedactClick}>
+                  Редактировать
+               </button>
+               <div className='form-profile__link'>
+                  <Link
+                     to='/signin'
+                     className='form-profile__link_exit'
+                     onClick={handleLogOut}>
+                     Выйти из аккаунта
+                  </Link>
                </div>
             </div>
-            <button
-               className={`form-profile__button 
-                  ${!isValid
-                     ? 'form-profile__button_disabled'
-                     : ''}`}
-               type='submit'
-               onClick={handleRedactClick}>
-               Редактировать
-            </button>
-            <div className='form-profile__link'>
-               <Link
-                  to='/signin'
-                  className='form-profile__link_exit'
-                  onClick={handleLogOut}>
-                  Выйти из аккаунта
-               </Link>
-            </div>
-         </div>
-      </form>
+         </form>
       </section >
    )
 }

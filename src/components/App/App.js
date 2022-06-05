@@ -18,6 +18,7 @@ import auth from '../../utils/Auth';
 import api from '../../utils/MainApi';
 import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { moviesApi } from '../../utils/MoviesApi';
 
 export default function App() {
 
@@ -43,8 +44,9 @@ export default function App() {
       getAuthStatus();
       Promise.all([auth.getData(token), api.getUserMovies(token)])
         .then(([userInfo, movies]) => {
+          console.log(userInfo.data);
           if (userInfo) {
-            setCurrentUser(userInfo);
+            setCurrentUser(userInfo.data);
             setUserMovies(movies);
             setIsErrorMovies(false);
           }
@@ -115,7 +117,8 @@ export default function App() {
   };
 
   function handleUpdateUser(name, email) {
-    api.updateUserInfo(name, email)
+    api
+      .updateUserInfo(name, email)
       .then(data => {
         setCurrentUser(data);
         setIsErrorState(false);

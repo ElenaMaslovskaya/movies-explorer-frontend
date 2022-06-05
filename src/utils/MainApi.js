@@ -23,7 +23,7 @@ class MainApi {
          .then(res => this._getCheckResponse(res));
    }
 
-   getUserMovies(token) {                                                        //метод для получения фильмов
+   getUserMovies(token) {  
       return fetch(`${this._baseURl}/movies`, {
          method: 'GET',
          headers: {

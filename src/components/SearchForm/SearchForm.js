@@ -11,13 +11,13 @@ export default function SearchForm({
    shortFilms,
    onCheckbox }) {
 
-   const { values, isValid, setValues, handleChange, setIsValid } = useFormWithValidation();
+   const { values, setValues, handleChange, setIsValid } = useFormWithValidation();
 
    useEffect(() => {
       if (!savedMoviesPage) {
          const keyword = localStorage.getItem('keyword');
          if (keyword) {
-            setValues({ keyword: keyword });
+            setValues({ keyword });
             setIsValid(true);
          }
       }
@@ -56,8 +56,8 @@ export default function SearchForm({
                />
                <button
                   className='search-form__button'
-                  type='button'
-                  disabled={!isValid}
+                  type='submit'
+               //disabled={!isValid}
                >
                   <img
                      className='search-form__icon'
@@ -73,24 +73,24 @@ export default function SearchForm({
 
             <div className='search-form__short'>
                <label className={`search-form__switch
-            ${shortFilms === 'on' 
-            ? 'search-form__switch_active' 
-            : null}`}>
-               <input className='search-form__checkbox search-form__checkbox_off'
+            ${shortFilms === 'on'
+                     ? 'search-form__switch_active'
+                     : null}`}>
+                  <input className='search-form__checkbox search-form__checkbox_off'
                      type="radio"
                      name='shortFilms'
                      value='off'
-                     checked={shortFilms === 'off' 
-                     ? true 
-                     : false}
+                     checked={shortFilms === 'off'
+                        ? true
+                        : false}
                      onChange={onCheckbox} />
                   <input className='search-form__checkbox search-form__checkbox_on'
                      type="radio"
                      name='shortFilms'
                      value='on'
-                     checked={shortFilms === 'on' 
-                     ? true 
-                     : false}
+                     checked={shortFilms === 'on'
+                        ? true
+                        : false}
                      onChange={onCheckbox} />
                   <span className='search-form__slider'></span>
                </label>

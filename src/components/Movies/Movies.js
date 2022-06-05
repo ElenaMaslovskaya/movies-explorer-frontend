@@ -2,14 +2,13 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 import React, { useEffect, useState } from 'react';
-import { moviesApi } from '../../utils/MoviesApi'
+import { moviesApi } from '../../utils/MoviesApi';
 
 export default function Movies({
    SavedMoviesPage,
    SavedMoviesList,
    onLikeClick,
-   onDeleteClick,
-   isLoading }) {
+   onDeleteClick}) {
 
    const checkboxState = localStorage.getItem('shortFilms') === 'on'
       ? 'on'
@@ -33,7 +32,7 @@ export default function Movies({
          setFilteredMovies(shortFilms === 'on'
             ? filterOnDuration(array)
             : array);
-      }
+      };
    }, [shortFilms, keyword])
 
    function filterOnWord(movies, searchQuery, shortFilms) {
@@ -105,6 +104,7 @@ export default function Movies({
       setShortFilms(e.target.value);
       localStorage.setItem('shortFilms', e.target.value);
    }
+
    return (
       <section className='movies'>
          <SearchForm

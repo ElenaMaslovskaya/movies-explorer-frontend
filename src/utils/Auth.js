@@ -46,8 +46,8 @@ class Auth {
 }
 
 const auth = new Auth({
-   // baseURL: 'https://movies.api.maslovski.nomoredomains.work'
-   baseURL: 'http://localhost:3001',
+   baseURL: 'https://movies.api.maslovski.nomoredomains.work',
+   // baseURL: 'http://localhost:3001',
    contentType: 'application/json'
 });
 

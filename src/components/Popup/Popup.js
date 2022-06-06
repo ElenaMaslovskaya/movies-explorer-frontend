@@ -4,9 +4,9 @@ import fail from '../../images/fail.svg';
 import success from '../../images/success.svg';
 
 export default function Popup({
-   closePopup,
-   isErrorStatus,
-   messagePopup,
+   onClose,
+   isErrorState,
+   message,
    isOpen
 }) {
 
@@ -17,21 +17,21 @@ export default function Popup({
                ? 'popup_opened'
                : ''}`}
       >
-         <div className='modal__container'>
+         <div className='popup__container'>
+            <button
+               type='button'
+               className='popup__close'
+               onClick={onClose} >
+            </button>
             <img
-               src={isErrorStatus
+               src={isErrorState
                   ? fail
                   : success}
                alt='Ошибка'
                className='popup__img'
             />
-            <button
-               type='button'
-               className='popup__close'
-               onClick={closePopup} >
-            </button>
             <p className='popup__message'>
-               {messagePopup}
+               {message}
             </p>
          </div>
       </section>

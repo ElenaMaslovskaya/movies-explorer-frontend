@@ -1,7 +1,7 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import React, { useEffect, useState } from 'react';
-import useWindowWidth from '../../hooks/useWindowWidth';
+import useWidth from '../../hooks/useWidth';
 import Preloader from '../Preloader/Preloader';
 
 export default function MoviesCardList({
@@ -14,25 +14,25 @@ export default function MoviesCardList({
    SavedMoviesList
 }) {
 
-   const width = useWindowWidth();
+   const width = useWidth();
    const [showList, setShowList] = useState([]);
-   const [cardsShowParams, setCardsShowParams] = useState({ shown: 0, hidden: 0 });
+   const [renderedCardsCount, setRenderedCardsCount] = useState({ rendered: 0, added: 0 });
 
    useEffect(() => {
       if (width >= 768) {
-         setCardsShowParams({ shown: 7, hidden: 7 });
+         setRenderedCardsCount({ rendered: 7, added: 7 });
       } else {
-         setCardsShowParams({ shown: 5, hidden: 5 });
+         setRenderedCardsCount({ rendered: 5, added: 5 });
       }
    }, [width]);
 
    useEffect(() => {
       if (list.length && !SavedMoviesPage) {
-         const res = list.filter((item, index) => index < cardsShowParams.shown);
+         const res = list.filter((item, index) => index < renderedCardsCount.rendered);
          console.log(res);
          setShowList(res);
       }
-   }, [list, SavedMoviesPage, cardsShowParams.shown]);
+   }, [list, SavedMoviesPage, renderedCardsCount.rendered]);
 
    function getSavedMovie(arr, id) {
       return arr.find((item) => {
@@ -42,7 +42,7 @@ export default function MoviesCardList({
 
    function handleClickMoreMovies() {
       const start = showList.length;
-      const end = start + cardsShowParams.hidden;
+      const end = start + renderedCardsCount.added;
       const difference = list.length - start;
 
       if (difference > 0) {

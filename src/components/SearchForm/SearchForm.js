@@ -3,7 +3,7 @@ import './SearchForm.css';
 import FindIcon from '../../images/find.svg';
 import DividingLine from '../../images/dividing-line.svg';
 import Search from '../../images/search.svg';
-import useFormWithValidation from '../../hooks/useFormWithValidation';
+import useForm from '../../hooks/useForm';
 
 export default function SearchForm({
    onSearchClick,
@@ -11,7 +11,7 @@ export default function SearchForm({
    shortFilms,
    onCheckbox }) {
 
-   const { values, setValues, handleChange, setIsValid } = useFormWithValidation();
+   const { values, setValues, handleChange, setIsValid } = useForm();
 
    useEffect(() => {
       if (!savedMoviesPage) {

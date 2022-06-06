@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import Logo from '../Logo/Logo';
 import { useHistory } from 'react-router-dom';
-import useFormWithValidation from '../../hooks/useFormWithValidation';
+import useForm from '../../hooks/useForm';
 
 export default function Login(props) {
 
@@ -12,7 +12,7 @@ export default function Login(props) {
       errors,
       isValid,
       handleChange
-   } = useFormWithValidation();
+   } = useForm();
 
    const history = useHistory();
 

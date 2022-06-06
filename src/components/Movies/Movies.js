@@ -21,7 +21,7 @@ export default function Movies({
    const [allMovies, setAllMovies] = useState([]);
    const [isError, setIsError] = useState(false);
 
-   function filterOnDuration(movies) {
+   function filterByDuration(movies) {
       return movies.filter((item) => item.duration < 40);
    };
 
@@ -30,12 +30,12 @@ export default function Movies({
       if (array && !keyword) {
          setShortFilms(localStorage.getItem('shortFilms'));
          setFilteredMovies(shortFilms === 'on'
-            ? filterOnDuration(array)
+            ? filterByDuration(array)
             : array);
       };
    }, [shortFilms, keyword])
 
-   function filterOnWord(movies, searchQuery, shortFilms) {
+   function searchOnKeyword(movies, searchQuery, shortFilms) {
       const moviesByQuery = movies.filter((item) => {
          const strRu = String(item.nameRU).toLowerCase();
          const strEn = String(item.nameEN).toLowerCase();
@@ -44,12 +44,12 @@ export default function Movies({
       });
 
       if (shortFilms === true) {
-         return filterOnDuration(moviesByQuery);
+         return filterByDuration(moviesByQuery);
       }
       return moviesByQuery;
    };
 
-   function customizeImagesUrl(movies) {
+   function refererImageUrl(movies) {
       movies.forEach(movie => {
          if (movie.image) {
             movie.thumbnail = `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`
@@ -63,15 +63,15 @@ export default function Movies({
 
    useEffect(() => {
       if (keyword) {
-         const array = filterOnWord(allMovies, keyword, shortFilms);
+         const array = searchOnKeyword(allMovies, keyword, shortFilms);
          setFilteredMovies(array);
       }
    }, [keyword, shortFilms, allMovies])
 
    function handleSetFilteredMovies(movies, query, checkbox) {
-      const moviesList = filterOnWord(movies, query);
+      const moviesList = searchOnKeyword(movies, query);
       setFilteredMovies(checkbox === 'on'
-         ? filterOnDuration(moviesList)
+         ? filterByDuration(moviesList)
          : moviesList);
       localStorage.setItem('movies', JSON.stringify(moviesList));
    }
@@ -85,7 +85,7 @@ export default function Movies({
       if (!allMovies.length) {
          moviesApi.getAllMovies()
             .then((data) => {
-               customizeImagesUrl(data);
+               refererImageUrl(data);
                setAllMovies(data);
                handleSetFilteredMovies(data, value, shortFilms);
             })

@@ -11,7 +11,7 @@ export default function MoviesCard({
       onLike(card);
    };
 
-   function getTime(mins) {
+   function calcTime(mins) {
       const hours = Math.trunc(mins / 60);
       const minutes = mins % 60;
       return `${hours}ч ${minutes}м`;
@@ -40,7 +40,7 @@ export default function MoviesCard({
                   {card.nameRU}
                </h3>
                <p className='movies-card__duration'>
-                  {getTime(card.duration)}
+                  {calcTime(card.duration)}
                </p>
             </div>
 

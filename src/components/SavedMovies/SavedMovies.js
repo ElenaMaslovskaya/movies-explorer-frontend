@@ -15,11 +15,11 @@ export default function SavedMovies({
    const [shortFilms, setShortFilms] = React.useState('off');
    const [filteredMovies, setFilteredMovies] = React.useState(SavedMoviesList);
 
-   function filterOnDuration(movies) {
+   function filterByDuration(movies) {
       return movies.filter((item) => item.duration < 40);
    };
 
-   function filterOnWord(movies, searchQuery, shortFilms) {
+   function searchOnKeyword(movies, searchQuery, shortFilms) {
       const moviesByQuery = movies.filter((item) => {
          const strRu = String(item.nameRU).toLowerCase();
          const strEn = String(item.nameEN).toLowerCase();
@@ -28,21 +28,21 @@ export default function SavedMovies({
       });
 
       if (shortFilms === true) {
-         return filterOnDuration(moviesByQuery);
+         return filterByDuration(moviesByQuery);
       }
       return moviesByQuery;
    };
 
    useEffect(() => {
-      const arr = filterOnWord(SavedMoviesList, keyword, shortFilms);
+      const arr = searchOnKeyword(SavedMoviesList, keyword, shortFilms);
       setFilteredMovies(shortFilms === 'on'
-         ? filterOnDuration(arr)
+         ? filterByDuration(arr)
          : arr);
    }, [keyword, shortFilms, SavedMoviesList]);
 
    function handleSearchSubmit(value) {
       setKeyword(value);
-      const resultList = filterOnWord(SavedMoviesList, keyword, shortFilms);
+      const resultList = searchOnKeyword(SavedMoviesList, keyword, shortFilms);
       setFilteredMovies(resultList);
    };
 

@@ -1,28 +1,28 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export default function useWindowWidth() {
+export default function useWidth() {
    const getWindowWidth = useCallback(() => window.innerWidth, []);
    const [windowWidth, setWindowWidth] = useState(getWindowWidth());
 
    useEffect(() => {
 
-      function doResize() {
+      function updateWidth() {
          setWindowWidth(getWindowWidth());
       };
 
-      window.addEventListener('resize', resizeThrottler, false);
+      window.addEventListener('resize', resizeSwitch, false);
 
       let resizeTimeout;
-      function resizeThrottler() {
+      function resizeSwitch() {
          if (!resizeTimeout) {
             resizeTimeout = setTimeout(() => {
                resizeTimeout = null;
-               doResize();
+               updateWidth();
             }, 2000);
          }
       };
 
-      return () => window.removeEventListener('resize', doResize);
+      return () => window.removeEventListener('resize', updateWidth);
    }, [getWindowWidth]);
 
    return windowWidth;

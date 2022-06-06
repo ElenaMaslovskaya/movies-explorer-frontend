@@ -24,12 +24,13 @@ class MainApi {
    }
 
    getUserMovies(token) {  
-      return fetch(`${this._baseURl}/movies`, {
+      // return [];
+      return fetch(`https://movies.api.maslovski.nomoredomains.work/movies`, {
          method: 'GET',
          headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': this._contentType
-         }
+         },
       })
          .then(res => this._getCheckResponse(res));
    }
@@ -83,8 +84,8 @@ class MainApi {
 }
 
 const api = new MainApi({
-   // baseURL: 'https://movies.api.maslovski.nomoredomains.work'
-   baseURL: 'http://localhost:3001',
+   baseURL: 'https://movies.api.maslovski.nomoredomains.work',
+   // baseURL: 'http://localhost:3001',
    contentType: 'application/json',
 });
 

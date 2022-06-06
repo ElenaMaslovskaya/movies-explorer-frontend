@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import './Register.css';
-import useFormWithValidation from '../../hooks/useFormWithValidation';
+import useForm from '../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
 
 export default function Register(props) {
@@ -10,7 +10,7 @@ export default function Register(props) {
       values,
       errors,
       isValid,
-      handleChange } = useFormWithValidation();
+      handleChange } = useForm();
 
    const history = useHistory();
 

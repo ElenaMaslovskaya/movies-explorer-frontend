@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import useFormWithValidation from '../../hooks/useFormWithValidation';
+import useForm from '../../hooks/useForm';
 
 export default function Profile({
    handleLogOut,
@@ -18,7 +18,7 @@ export default function Profile({
       isValid,
       handleChange,
       setValues,
-      setIsValid } = useFormWithValidation();
+      setIsValid } = useForm();
 
    useEffect(() => {
       console.log(currentUser);

@@ -18,7 +18,6 @@ import auth from '../../utils/Auth';
 import api from '../../utils/MainApi';
 import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { moviesApi } from '../../utils/MoviesApi';
 
 export default function App() {
 
@@ -42,16 +41,18 @@ export default function App() {
       const token = localStorage.getItem('jwt');
       setIsLoading(true);
       getAuthStatus();
+      console.log(api.getUserMovies(token));
       Promise.all([auth.getData(token), api.getUserMovies(token)])
         .then(([userInfo, movies]) => {
           console.log(userInfo.data);
           if (userInfo) {
             setCurrentUser(userInfo.data);
-            setUserMovies(movies);
+            setUserMovies(movies.data);
             setIsErrorMovies(false);
           }
         })
         .catch((err) => {
+          console.log(err);
           setIsErrorState(true);
           setErrorMessage(err.message);
           setIsPopupOpened(true);
@@ -236,6 +237,12 @@ export default function App() {
               </Route>
 
             </Switch>
+
+            <Popup
+              isErrorState={isErrorState}
+              isOpen={isPopupOpen}
+              message={errorMessage} onClose={closePopup}
+            />
 
             <Route
               exact

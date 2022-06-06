@@ -38,7 +38,7 @@
 }
 
 .form-login__input {
-   margin: 5px 0 23px;
+   margin: 5px 0 10px;
    padding-bottom: 10px;
    background: #202020;
    color: #ffffff;
@@ -105,7 +105,7 @@
    transition: 0.5s;
 }
 
-.form-loginr__error {
+.form-login__error {
    font-size: 10px;
    font-weight: 400;
    line-height: 12px;

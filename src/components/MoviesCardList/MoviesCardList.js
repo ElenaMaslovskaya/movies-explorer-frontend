@@ -3,10 +3,6 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import React, { useEffect, useState } from 'react';
 import useWidth from '../../hooks/useWidth';
 import Preloader from '../Preloader/Preloader';
-import {
-   ADDED_CARD_COUNT_DESCTOP, RENDERED_CARD_COUNT_DESCTOP,
-   ADDED_CARD_COUNT_MOBILE, RENDERED_CARD_COUNT_MOBILE,
-} from '../../utils/consts';
 
 export default function MoviesCardList({
    isLoading,
@@ -24,9 +20,9 @@ export default function MoviesCardList({
 
    useEffect(() => {
       if (width >= 768) {
-         setRenderedCardsCount({ RENDERED_CARD_COUNT_DESCTOP, ADDED_CARD_COUNT_DESCTOP });
+         setRenderedCardsCount({ rendered: 7, added: 7 });
       } else {
-         setRenderedCardsCount({ RENDERED_CARD_COUNT_MOBILE, ADDED_CARD_COUNT_MOBILE });
+         setRenderedCardsCount({ rendered:5 , added: 5 });
       }
    }, [width]);
 
@@ -36,7 +32,7 @@ export default function MoviesCardList({
          console.log(res);
          setShowList(res);
       }
-   }, [list, SavedMoviesPage, renderedCardsCount.rendered]);
+   }, [list, SavedMoviesPage, renderedCardsCount.R]);
 
    function getSavedMovie(arr, id) {
       return arr.find((item) => {

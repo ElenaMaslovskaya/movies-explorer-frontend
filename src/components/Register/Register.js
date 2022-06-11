@@ -4,8 +4,9 @@ import Logo from '../Logo/Logo';
 import './Register.css';
 import useForm from '../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-export default function Register(props) {
+function Register(props) {
    const {
       values,
       errors,
@@ -123,3 +124,5 @@ export default function Register(props) {
       </section>
    )
 }
+
+export default withRouter(Register);

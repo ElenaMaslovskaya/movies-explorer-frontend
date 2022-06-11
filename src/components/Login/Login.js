@@ -4,8 +4,9 @@ import './Login.css';
 import Logo from '../Logo/Logo';
 import { useHistory } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
+import { withRouter } from 'react-router-dom';
 
-export default function Login(props) {
+function Login(props) {
 
    const {
       values,
@@ -102,3 +103,5 @@ export default function Login(props) {
       </section>
    )
 }
+
+export default withRouter(Login);

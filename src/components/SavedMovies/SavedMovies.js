@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import './SavedMovies.css';
+import { searchOnKeyword, filterByDuration } from '../../utils/utils';
 
 export default function SavedMovies({
    SavedMoviesPage,
@@ -14,24 +15,6 @@ export default function SavedMovies({
    const [keyword, setKeyword] = React.useState('');
    const [shortFilms, setShortFilms] = React.useState('off');
    const [filteredMovies, setFilteredMovies] = React.useState(SavedMoviesList);
-
-   function filterByDuration(movies) {
-      return movies.filter((item) => item.duration < 40);
-   };
-
-   function searchOnKeyword(movies, searchQuery, shortFilms) {
-      const moviesByQuery = movies.filter((item) => {
-         const strRu = String(item.nameRU).toLowerCase();
-         const strEn = String(item.nameEN).toLowerCase();
-         const searchStr = searchQuery.toLowerCase().trim();
-         return (strRu.indexOf(searchStr) !== -1 || strEn.indexOf(searchStr) !== -1);
-      });
-
-      if (shortFilms === true) {
-         return filterByDuration(moviesByQuery);
-      }
-      return moviesByQuery;
-   };
 
    useEffect(() => {
       const arr = searchOnKeyword(SavedMoviesList, keyword, shortFilms);

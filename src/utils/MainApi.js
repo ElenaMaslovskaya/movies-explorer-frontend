@@ -24,8 +24,8 @@ class MainApi {
    }
 
    getUserMovies(token) {  
-      // return [];
       return fetch(`https://movies.api.maslovski.nomoredomains.work/movies`, {
+      // return fetch(`http://localhost:3001/movies`, {
          method: 'GET',
          headers: {
             'Authorization': `Bearer ${token}`,

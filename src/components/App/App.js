@@ -18,8 +18,9 @@ import auth from '../../utils/Auth';
 import api from '../../utils/MainApi';
 import { useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { withRouter } from 'react-router-dom';
 
-export default function App() {
+function App() {
 
   const history = useHistory();
 
@@ -32,19 +33,17 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [userMovies, setUserMovies] = useState([]);
 
-  useEffect(() => {
-    checkToken();
-  }, []);
+  function getAuthStatus() {
+    setLoggedIn(true);
+  }
 
   function checkToken() {
     if (localStorage.getItem('jwt')) {
       const token = localStorage.getItem('jwt');
       setIsLoading(true);
       getAuthStatus();
-      console.log(api.getUserMovies(token));
       Promise.all([auth.getData(token), api.getUserMovies(token)])
         .then(([userInfo, movies]) => {
-          console.log(userInfo.data);
           if (userInfo) {
             setCurrentUser(userInfo.data);
             setUserMovies(movies.data);
@@ -64,9 +63,9 @@ export default function App() {
     }
   }
 
-  function getAuthStatus() {
-    setLoggedIn(true);
-  }
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   function closePopup() {
     setIsPopupOpened(false);
@@ -115,6 +114,7 @@ export default function App() {
     setCurrentUser({});
     localStorage.clear();
     history.push('/');
+    console.log('это я');
   };
 
   function handleUpdateUser(name, email) {
@@ -181,6 +181,38 @@ export default function App() {
             </Route>
 
             <Switch>
+
+              <ProtectedRoute
+                exact
+                path='/movies'
+                loggedIn={loggedIn}
+                component={Movies}
+                SavedMoviesPage={false}
+                SavedMoviesList={userMovies}
+                onLikeClick={handleSaveMovie}
+                onDeleteClick={handleDeleteMovie}
+              />
+
+              <ProtectedRoute
+                exact
+                path='/saved-movies'
+                loggedIn={loggedIn}
+                component={SavedMovies}
+                SavedMoviesPage={true}
+                SavedMoviesList={userMovies}
+                isLoading={isLoading}
+                isErrorMovies={isErrorMovies}
+                onDeleteClick={handleDeleteMovie}
+              />
+              <ProtectedRoute
+                exact
+                path='/profile'
+                loggedIn={loggedIn}
+                component={Profile}
+                handleLogOut={handleLogOut}
+                handleUpdateUser={handleUpdateUser}
+                isErrorState={isErrorState}
+              />
               <Route
                 exact
                 path='/'>
@@ -202,35 +234,6 @@ export default function App() {
                   onSubmit={handleLogin}
                 />
               </Route>
-
-              <ProtectedRoute
-                path='/movies'
-                loggedIn={loggedIn}
-                component={Movies}
-                SavedMoviesPage={false}
-                SavedMoviesList={userMovies}
-                onLikeClick={handleSaveMovie}
-                onDeleteClick={handleDeleteMovie}
-              />
-
-              <ProtectedRoute
-                path='/saved-movies'
-                loggedIn={loggedIn}
-                component={SavedMovies}
-                SavedMoviesPage={true}
-                SavedMoviesList={userMovies}
-                isLoading={isLoading}
-                isErrorMovies={isErrorMovies}
-                onDeleteClick={handleDeleteMovie}
-              />
-              <ProtectedRoute
-                path='/profile'
-                loggedIn={loggedIn}
-                component={Profile}
-                handleLogOut={handleLogOut}
-                handleUpdateUser={handleUpdateUser}
-                isErrorState={isErrorState}
-              />
 
               <Route path="*">
                 <NotFound />
@@ -256,3 +259,5 @@ export default function App() {
     </CurrentUserContext.Provider>
   );
 }
+
+export default withRouter(App);

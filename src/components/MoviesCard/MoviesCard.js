@@ -1,5 +1,6 @@
 import React from 'react';
 import './MoviesCard.css';
+import { calcTime } from '../../utils/utils';
 
 export default function MoviesCard({
    card,
@@ -10,12 +11,6 @@ export default function MoviesCard({
    function handleLikeClick() {
       onLike(card);
    };
-
-   function calcTime(mins) {
-      const hours = Math.trunc(mins / 60);
-      const minutes = mins % 60;
-      return `${hours}ч ${minutes}м`;
-   }
 
    function handleDeleteClick() {
       onDelete(card);

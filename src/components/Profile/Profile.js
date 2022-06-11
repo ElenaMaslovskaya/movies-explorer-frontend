@@ -123,7 +123,7 @@ export default function Profile({
                </button>
                <div className='form-profile__link'>
                   <Link
-                     to='/signin'
+                     to='/'
                      className='form-profile__link_exit'
                      onClick={handleLogOut}>
                      Выйти из аккаунта

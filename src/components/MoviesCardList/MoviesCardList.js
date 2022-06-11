@@ -3,6 +3,10 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import React, { useEffect, useState } from 'react';
 import useWidth from '../../hooks/useWidth';
 import Preloader from '../Preloader/Preloader';
+import {
+   ADDED_CARD_COUNT_DESCTOP, RENDERED_CARD_COUNT_DESCTOP,
+   ADDED_CARD_COUNT_MOBILE, RENDERED_CARD_COUNT_MOBILE,
+} from '../../utils/consts';
 
 export default function MoviesCardList({
    isLoading,
@@ -20,9 +24,9 @@ export default function MoviesCardList({
 
    useEffect(() => {
       if (width >= 768) {
-         setRenderedCardsCount({ rendered: 7, added: 7 });
+         setRenderedCardsCount({ RENDERED_CARD_COUNT_DESCTOP, ADDED_CARD_COUNT_DESCTOP });
       } else {
-         setRenderedCardsCount({ rendered: 5, added: 5 });
+         setRenderedCardsCount({ RENDERED_CARD_COUNT_MOBILE, ADDED_CARD_COUNT_MOBILE });
       }
    }, [width]);
 
@@ -91,7 +95,7 @@ export default function MoviesCardList({
                ${isError && 'movies-cardlist__message_type_err'}`}>
                   {isError
                      ? `Ошибка сервера `
-                     : 'Ничего не найдено'}
+                     : 'Нет фильмов'}
                </p>
             ) : (
                <ul className='movies-cardlist__items'>

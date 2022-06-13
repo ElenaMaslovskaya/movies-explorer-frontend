@@ -1,38 +1,51 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
+import { calcTime } from '../../utils/utils';
 
-export default function MoviesCard({ moviesCard }) {
-   const location = useLocation();
-   const [isSavedMovies, setIsSavedMovies] = React.useState(false);
+export default function MoviesCard({
+   card,
+   onLike,
+   onDelete,
+   liked,
+   savedPage }) {
+   function handleLikeClick() {
+      onLike(card);
+   };
 
-   React.useEffect(() => {
-      if (location.pathname === '/saved-movies') {
-         setIsSavedMovies(true);
-      }
-   }, [location.pathname]);
+   function handleDeleteClick() {
+      onDelete(card);
+   };
 
    return (
-      <div className='movies-card'>
-         <img className='movies-card__image' src={moviesCard.image} alt='Фильм' />
+      <li className='movies-card'>
+         <a
+            className='movies-card__link'
+            href={card.trailer || card.trailerLink}
+            target='_blank'
+            rel='noreferrer'>
+            <img
+               className='movies-card__image'
+               src={card.image}
+               alt='Фильм'
+            />
+         </a>
          <div className='movies-card__info'>
             <div>
-            <h3 className='movies-card__title'>{moviesCard.nameRU}</h3>
-            <p className='movies-card__duration'>
-               {moviesCard.duration}
-               {''}
-               минут
-            </p>
+               <h3 className='movies-card__title'>
+                  {card.nameRU}
+               </h3>
+               <p className='movies-card__duration'>
+                  {calcTime(card.duration)}
+               </p>
             </div>
-            <button className={
-               `${!moviesCard.isSaved 
-               ? 'movies-card__save-button' 
-               : 'movies-card__save-button_active'}
-               ${isSavedMovies 
-               ? ' movies-card__delete-button'
-               : ''}`}>
-            </button>
+
+            <button
+               className={`${savedPage ? 'movies-card__delete-button' : 'movies-card__save-button'} 
+               ${liked && !savedPage ? 'movies-card__save-button_active' : ''}`}
+               type='button'
+               onClick={savedPage || liked ? handleDeleteClick : handleLikeClick}
+            />
          </div>
-      </div>
+      </li>
    )
 }

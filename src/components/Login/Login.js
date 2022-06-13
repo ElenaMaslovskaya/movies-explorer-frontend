@@ -1,16 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import Logo from '../Logo/Logo';
+import { useHistory } from 'react-router-dom';
+import useForm from '../../hooks/useForm';
+import { withRouter } from 'react-router-dom';
 
-export default function Login() {
+function Login(props) {
+
+   const {
+      values,
+      errors,
+      isValid,
+      handleChange
+   } = useForm();
+
+   const history = useHistory();
+
+   useEffect(() => {
+      if (props.loggedIn)
+         history.push('/movies');
+   }, []);
+
+   function handleSubmit(e) {
+      e.preventDefault();
+      props.onSubmit(values.email, values.password);
+   };
+
    return (
       <section className='login'>
-         <form className='form-login' name='form-login'>
+         <form
+            className='form-login'
+            name='form-login'
+            onSubmit={handleSubmit}>
             <div className='form-login__container'>
                <div className='form-login__header'>
                   <Logo />
-                  <h2 className='form-login__title'>Рады видеть!</h2>
+                  <h2 className='form-login__title'>
+                     Рады видеть!
+                  </h2>
                </div>
                <label
                   className='form-login__label'
@@ -21,12 +49,15 @@ export default function Login() {
                   className='form-login__input'
                   type='email'
                   id='login-email'
-                  name='login-email'
+                  name='email'
                   placeholder='Email'
-                  autoComplete='off'
                   required
+                  onChange={handleChange}
                />
-               <span className='form-login__error'></span>
+               <span className='form-login__error'>
+                  {errors.email || ''}
+               </span>
+
                <label
                   className='form-login__label'
                   htmlFor='login-password'>
@@ -36,17 +67,35 @@ export default function Login() {
                   className='form-login__input'
                   type='password'
                   id='login-password'
-                  name='login-password'
+                  name='password'
                   placeholder='Password'
-                  autoComplete='off'
                   minLength='8'
                   required
+                  onChange={handleChange}
                />
-               <span className='form-login__error'></span>
-               <button className='form-login__button' type='submit'>Войти</button>
+               <span className='form-login__error'>
+                  {errors.password || ''}
+               </span>
+
+               <button
+                  className={`form-login__button 
+                        ${!isValid
+                        ? 'form-login__button_disabled'
+                        : ''}`}
+                  type='submit'
+               >
+                  {`${props.isLoading
+                     ? 'Вход...'
+                     : 'Войти'}`}
+               </button>
                <div className='form-login__link'>
-                  <p className='form-login__link_text'>Ещё не зарегистрированы?
-                     <Link to='/signup' className='form-login__link_register'>Регистрация</Link>
+                  <p className='form-login__link_text'>
+                     Ещё не зарегистрированы?
+                     <Link
+                        to='/signup'
+                        className='form-login__link_register'>
+                        Регистрация
+                     </Link>
                   </p>
                </div>
             </div>
@@ -54,3 +103,5 @@ export default function Login() {
       </section>
    )
 }
+
+export default withRouter(Login);

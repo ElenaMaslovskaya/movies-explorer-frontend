@@ -1,14 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
-import { Link, useLocation, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import  Navigation from '../Navigation/Navigation';
 import './Header.css';
 
-export default function Header() {
-   const location = useLocation();
+export default function Header(props) {
    const [isMenuBurgerOpened, setIsMenuBurgerOpened] = React.useState(false);
-   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
    const [isWidthChange, setIsWidthChange] = React.useState(window.innerWidth);
    const adaptiveWidth = () => {
       setIsWidthChange(window.innerWidth);
@@ -20,15 +18,6 @@ export default function Header() {
       return () => window.removeEventListener('resize', adaptiveWidth);
    });
 
-   React.useEffect(() => {
-      if (location.pathname === '/') {
-         setIsLoggedIn(false);
-      }
-      if (location.pathname === '/profile' || location.pathname === '/saved-movies' || location.pathname === '/movies') {
-         setIsLoggedIn(true);
-      }
-   }, [location.pathname]);
-
    function handleMenuBurgerClick() {
       setIsMenuBurgerOpened(!isMenuBurgerOpened);
    }
@@ -38,32 +27,17 @@ export default function Header() {
          <Logo />
          <nav className="header__links">
 
-            {isLoggedIn && !isDesktop && (
-               <button
-                  type="button"
-                  className="header__menu-burger"
-                  onClick={handleMenuBurgerClick}
-               />
-            )}
-
-            {isLoggedIn && !isDesktop && (
-               <Navigation
-                  isOpen={isMenuBurgerOpened}
-                  onClose={handleMenuBurgerClick}
-               />
-            )}
-
-            {
-               !isLoggedIn && (
+         {
+               !props.loggedIn && (
                   <>
                      <Link
-                        to="signup"
+                        to="/signup"
                         className="header__signup"
                      >
                         Регистрация
                      </Link>
                      <Link
-                        to="signin"
+                        to="/signin"
                         className="header__signin"
                      >
                         Войти
@@ -71,8 +45,23 @@ export default function Header() {
                   </>
                )
             }
-            {
-               isLoggedIn && isDesktop && (
+
+            {props.loggedIn && !isDesktop && (
+               <button
+                  type="button"
+                  className="header__menu-burger"
+                  onClick={handleMenuBurgerClick}
+               />
+            )}
+
+            {props.loggedIn && !isDesktop && (
+               <Navigation
+                  isOpen={isMenuBurgerOpened}
+                  onClose={handleMenuBurgerClick}
+               />
+            )}
+
+            {props.loggedIn && isDesktop && (
                   <>
                      <NavLink
                         to="/movies"

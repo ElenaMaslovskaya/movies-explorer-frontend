@@ -37,6 +37,12 @@
    box-shadow: 0 0 1em #ffffff;
 }
 
+.movies-cardlist__message {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 @media screen and (min-width: 768px) {
    .movies-cardlist {
       padding: 60px 30px;

@@ -1,6 +1,6 @@
 .movies-card {
-   display: grid;
-   grid-template-columns: auto;
+   display: flex;
+   flex-direction: column;
    margin: 0px auto 20px;
    align-items: center;
 }
@@ -80,6 +80,10 @@
    text-align: left;
    margin-left: 12px;
 }
+.movies-card__link {
+   width: 300px;
+   height: 168px;
+}
 
 @media screen and (min-width: 768px) {
    .movies-card {
@@ -93,6 +97,12 @@
    }
 
    .movies-card__image {
+      width: 220px;
+      height: 122px;
+      margin-right: 6px;
+   }
+
+   .movies-card__link {
       width: 220px;
       height: 122px;
       margin-right: 6px;
